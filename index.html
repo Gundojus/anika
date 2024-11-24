@@ -1,100 +1,156 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>This one is for my Varchhu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./css/default.css">
+    <style>
+        body {
+            font-family: "arial";
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #fafafa;
+            color: #333;
+        }
 
-<style type="text/css">
-@font-face {
-	font-family: digit;
-	src: url('digital-7_mono.ttf') format("truetype");
-}
-</style>
-<link href="css/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/garden.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
 
+        .card {
+            width: 100%;
+            background-color: #d4e7ef;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #a7ddf5;
+        }
+
+        .cartoon {
+            margin-bottom: 35px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .cartoon img {
+            width: 100%;
+            height: 100%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        .input-group input {
+            padding: 16px;
+            border: none;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+            outline: none;
+            color: #333;
+            background-color: #f4f4f4;
+            width: calc(100% - 30px);
+        }
+
+        .input-group input::placeholder {
+            color: #959595;
+        }
+
+        .input-group input:focus {
+            border-color: #39778c;
+        }
+
+        button {
+            background-color: #2d6476;
+            color: #fff;
+            padding: 16px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #39778c;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <div class="card">
+            <div class="cartoon">
+                <img src="https://i.ibb.co/98gpLCQ/l1.png" alt="" id="animation1">
+                <img src="https://i.ibb.co/Vq5j4Vg/l2.png" alt="" id="animation2" style="display: none;">
+                <img src="https://i.ibb.co/Y0jsj90/l3.png" alt="" id="animation3" style="display: none;">
+            </div>
+            <form onsubmit="validateLogin(event)">
+                <div class="input-group">
+                    <input type="text" id="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 
-<div id="mainDiv">
-	<div id="content">
-		<div id="code">
-			<span class="space" />
-			Happy 1 Year 💕💕<br />
-			Babes<br />
-			Remember all the food dates?<br />
-			The trekking, the hidden places?<br />
-			We singlehandedly increased the demand for Tiramisus;<br />
-			And we painted and drove and made such bad jokes in between the good times;<br />
-			All that we've been through, it's all worth it baby;<br /><br />
-			<span class="space"></span>if (!anika) {<br />
-				<span class="space"></span><span class="placeholder"></span>food = "boring";<br />
-				<span class="space"></span><span class="placeholder"></span>standup = "bland";<br />
-				<span class="space"></span><span class="placeholder"></span>life = "weird";<br />
-				<span class="space"></span>}<br /><br />
-			For many more Kinderjoys, Legos, Udons, and Tiramisus;<br />
-			I love you;<br />
-			<br />
-			PS - click the heart below for a surprise<br />
-			<br />
-			<span id="heartspan">
-			<a href="twerk.gif"><i class="fas fa-heart" id="icon"></i></a>
-			</span>
+    <script>
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const animation1 = document.getElementById('animation1');
+        const animation2 = document.getElementById('animation2');
+        const animation3 = document.getElementById('animation3');
 
-		</div>
-		<div id="loveHeart">
-			<canvas id="garden"></canvas>
-			<div id="words">
-				<div id="messages">
-					अनिका बेबी
-					<div id="elapseClock"></div>
-				</div>
-				<div id="loveu">
-					Aloo U<br/>
-					<div class="signature">- Sohan</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+        emailInput.addEventListener('focus', () => {
+            animation1.style.display = "none";
+            animation3.style.display = "block";
+            animation2.style.display = "none";
+        });
 
-<script type="text/javascript">
-var offsetX = $("#loveHeart").width() / 2;
-var offsetY = $("#loveHeart").height() / 2 - 55;
-var together = new Date();
-together.setFullYear(2023, 10, 26); // November is month 10 (0-based index)
-together.setHours(17); // 5 PM in 24-hour format
-together.setMinutes(30); // 30 minutes past the hour
-together.setSeconds(0); // Zero seconds
-together.setMilliseconds(0); // Zero milliseconds
+        passwordInput.addEventListener('focus', () => {
+            animation1.style.display = "none";
+            animation2.style.display = "block";
+            animation3.style.display = "none";
+        });
 
+        const showAnimation1 = () => {
+            animation1.style.display = "block";
+            animation2.style.display = "none";
+            animation3.style.display = "none";
+        };
 
-if (!document.createElement('canvas').getContext) {
-	var msg = document.createElement("div");
-	msg.id = "errorMsg";
-	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
-	document.body.appendChild(msg);
-	$("#code").css("display", "none")
-	$("#copyright").css("position", "absolute");
-	$("#copyright").css("bottom", "10px");
-	document.execCommand("stop");
-} else {
-	setTimeout(function () {
-		startHeartAnimation();
-	}, 5000);
+        emailInput.addEventListener('blur', showAnimation1);
+        passwordInput.addEventListener('blur', showAnimation1);
 
-	timeElapse(together);
-	setInterval(function () {
-		timeElapse(together);
-	}, 500);
+        function validateLogin(event) {
+            event.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
 
-	adjustCodePosition();
-	$("#code").typewriter();
-}
-</script>
+            if (email === "anika02chopra@gmail.com" && password === "AlooU4ever") {
+                window.location.href = "love.html";
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        }
+    </script>
 </body>
 </html>
